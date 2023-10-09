@@ -1,7 +1,6 @@
 const {
     INTEGER
 } = require("sequelize");
-const { produk } = require("./produk.model");
 
 module.exports = (sequelize, DataTypes) => {
     const dtProduk = sequelize.define("dt_produk", {

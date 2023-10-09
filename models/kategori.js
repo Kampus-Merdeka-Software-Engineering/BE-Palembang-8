@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: true
     },
+    image: {
+      type: DataTypes.STRING
+    }
   });
   return category;
 };

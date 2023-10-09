@@ -1,5 +1,5 @@
 const Produk = require("../controller/produk");
-const uploadController = require("../controller/multiple.produk");
+// const uploadController = require("../controller/multiple.produk");
 const router = require('express').Router()
 const db = require("../models");
 const auth = require("../middlewares/auth.js");
@@ -14,14 +14,11 @@ const Produks = db.produk;
 router.post('/addProduk', Produk.addProduk);
 router.get('/getAll' , Produk.getAllProduk);
 router.get('/getById/:id' , Produk.getDetailProduk);
+router.get('/getByCategory/:id' , Produk.getProdukByCategoryId);
+
 router.put('/:id',   Produk.upload,Produk.updateProduk);
 router.delete('/:id',  Produk.deleteProduk);
-router.post(
-    "/multiple-upload",
-    uploadController.uploadImages,
-    uploadController.resizeImages,
-    uploadController.getResult
-  );
+
 
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {

@@ -63,6 +63,29 @@ const getAllProduk = async (req, res) => {
   }
 };
 
+const getProdukByCategoryId = async (req, res) => {
+
+  try {
+    let id = req.params.id;
+    let Produk = await Produks.findOne({ where: { categoryId: id } }, {
+      include: [
+        { association: 'category' },
+        {
+           association: 'gambar' ,
+          
+        }
+     ]
+    });
+  
+    if (!Produk) {
+      res.send("Produk Tidak Tersedia found");
+    }
+    res.status(200).send(Produk);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 
 
 const getDetailProduk = async (req, res) => {
@@ -159,5 +182,6 @@ module.exports = {
   deleteProduk,
   upload,
   getDetailProduk,
-  addImage
+  addImage,
+  getProdukByCategoryId
 };

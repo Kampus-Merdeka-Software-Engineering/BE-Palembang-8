@@ -23,19 +23,19 @@ const loginUser = async (req, res)=> {
       let checkPassword = bcrypt.compareSync(password, passwordHash);
 
       if (checkPassword) {
-        res.json({
+        res.status(200).json({
           message: "Berhasil Login",
           token: jwt.sign({ id: result.id }, "asrul-dev"),
           email : req.body.email
         });
       } else {
-        res.json({
+        res.status(401).json({
           message: "Gagal Login",
         });
       }
     })
     .catch(function (error) {
-      res.json({ error: error });
+      res.status(500).json({ error: error });
     });
 }
 
@@ -55,21 +55,26 @@ const logout = async (req, res) =>{
 
 
 const createUser = async (req, res) => {
-
-
+  try{
   let salt = bcrypt.genSaltSync(10);
   let hash = bcrypt.hashSync(req.body.password, salt);
 
   let info = {
     name: req.body.name,
-    picture: req.file.path,
-    email: req.body.email,
     phone: req.body.phone,
+    email: req.body.email,
     password: hash,
   };
   const users = await user.create(info);
-  res.status(200).send(users);
+  res.status(201).json({
+    message: "Berhasil Membuat Akun",
+    user: users
+  });
   console.log(users);
+ } catch (error) {
+  console.error(error);
+  res.status(500).json({ error: 'Terjadi kesalahan server.' });
+}
 };
 
 

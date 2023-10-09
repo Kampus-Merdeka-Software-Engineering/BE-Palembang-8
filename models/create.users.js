@@ -21,9 +21,6 @@ module.exports = {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: true
-          },
-          picture: {
-            type: DataTypes.STRINGx 
           }
         })
         .then(() => {

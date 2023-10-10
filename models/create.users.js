@@ -2,6 +2,11 @@ module.exports = {
     up: function (queryInterface, DataTypes) {
       return queryInterface
         .createTable("users", {
+          id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+          },
           name: {
             type: DataTypes.STRING,
             allowNull: true,

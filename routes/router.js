@@ -4,13 +4,14 @@ const user = require("./user.router.js");
 const kategori = require("./kategori.router.js");
 const brands = require("./brands.js");
 const Produk = require("./produk.js");
+const Cart = require("./cart.js");
 const homeController = require("../controller/home");
 const path = require('path');
 
 
 
 
-
+router.use("/cart", Cart);
 router.use("/users", user);
 router.use("/kategori", kategori);
 router.use("/brands", brands);

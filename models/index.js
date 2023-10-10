@@ -2,6 +2,7 @@ const dbConfig =  require(__dirname + "/../config/config.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const createBrands = require("./create.brands.js");
 const  createUser  = require("./create.users.js");
+const createCart = require("./create.cart.js");
 
 let sequelize = new Sequelize({
   host: dbConfig.host,
@@ -32,6 +33,7 @@ db.category = require("./kategori.js")(sequelize, DataTypes );
 db.produk = require("./produk.model.js")(sequelize, DataTypes );
 db.dtproduk = require("./dt_produk.models.js")(sequelize, DataTypes );
 db.user = require("./user.js")(sequelize, DataTypes, createUser );
+db.cart = require("./cart.js")(sequelize, DataTypes, createCart );
 
 db.category.hasMany(db.produk);
 db.produk.belongsTo(db.category, {

@@ -26,7 +26,8 @@ const loginUser = async (req, res)=> {
         res.status(200).json({
           message: "Berhasil Login",
           token: jwt.sign({ id: result.id }, "asrul-dev"),
-          email : req.body.email
+          email : req.body.email,
+          userId : result.id
         });
       } else {
         res.status(401).json({
